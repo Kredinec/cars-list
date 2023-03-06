@@ -1,0 +1,36 @@
+<div class="container">
+
+  <label id="example-radio-group-label">Saling</label>
+  <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    class="example-radio-group"
+    (change)="filterChanged()" [(ngModel)]="selectedSale">
+    <mat-radio-button class="example-radio-button" *ngFor="let saling of saleOptions" [value]="saling">
+      {{saling}}
+    </mat-radio-button>
+  </mat-radio-group>
+  <div>
+    <mat-slider discrete class="mat-slider" min="5000" max="40000">
+      <input value="5000" (change)="filterChanged()" [(ngModel)]="minPrice" matSliderStartThumb>
+      <input value="10000" (change)="filterChanged()" [(ngModel)]="maxPrice" matSliderEndThumb>
+    </mat-slider>
+  </div>
+
+  <table>
+    <tr>
+      <th>id</th>
+      <th>model</th>
+      <th>color</th>
+      <th>prise</th>
+      <th>sale</th>
+    </tr>
+    <tr *ngFor="let car of filteredCars" >
+      <td >{{car.id}}</td>
+      <td>{{car.model}}</td>
+      <td><div class="color" [ngStyle]="{'background':car.color}"></div></td>
+      <td>{{car.price}}</td>
+      <td>{{car.sale}}</td>
+      <td> <button (click)="deleteCar(car.id)">Del</button></td>
+    </tr>
+  </table>
+</div>
